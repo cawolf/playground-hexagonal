@@ -1,0 +1,12 @@
+Domain\Entity\GreatEntity:
+    type: entity
+    repositoryClass: Infrastructure\GreatRepository
+    table: great
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        attribute:
+            type: string

@@ -1,0 +1,34 @@
+parameters:
+    #parameter_name: value
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    AppBundle\:
+        resource: '../../src/AppBundle/*'
+        exclude: '../../src/AppBundle/{Entity,Repository,Tests,Event,Listener}'
+
+    AppBundle\Controller\:
+        resource: '../../src/AppBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    AppBundle\Listener\MakeItGreatListener:
+        tags:
+            - { name: kernel.event_listener, event: "AppBundle\\Event\\GreatEvent" }
+
+    UseCase\:
+        public: true
+        resource: '../../src/UseCase'
+
+    Domain\:
+        resource: '../../src/Domain'
+
+    Domain\GreatInterface:
+        class: Infrastructure\GreatRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments:
+          - Domain\Entity\GreatEntity
