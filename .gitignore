@@ -2,6 +2,8 @@
 /app/config/parameters.yml
 /build/
 /composer.lock
+/composer.phar
+/deptrac.phar
 /phpunit.xml
 /var/*
 !/var/cache

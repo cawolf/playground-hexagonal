@@ -1,0 +1,55 @@
+paths:
+  - ./src
+exclude_files:
+  - .*test.*
+layers:
+  - name: Domain
+    collectors:
+      - type: className
+        regex: Domain\\.*
+  - name: InfrastructureController
+    collectors:
+      - type: className
+        regex: Infrastructure\\Controller.*
+  - name: InfrastructureRepository
+    collectors:
+      - type: className
+        regex: Infrastructure\\Repository.*
+  - name: InfrastructureService
+    collectors:
+      - type: className
+        regex: Infrastructure\\Service.*
+  - name: UseCase
+    collectors:
+      - type: className
+        regex: UseCase\\.*
+  - name: BundleController
+    collectors:
+      - type: className
+        regex: Bundle\\Controller.*
+  - name: BundleEvent
+    collectors:
+      - type: className
+        regex: Bundle\\Event.*
+  - name: BundleListener
+    collectors:
+      - type: className
+        regex: Bundle\\Listener.*
+ruleset:
+  Domain:
+  UseCase:
+    - Domain
+  InfrastructureController:
+    - InfrastructureService
+  InfrastructureService:
+    - InfrastructureRepository
+    - Domain
+  InfrastructureRepository:
+    - Domain
+  BundleController:
+    - BundleEvent
+  BundleListener:
+    - BundleEvent
+    - UseCase
+  BundleEvent:
+    - Domain

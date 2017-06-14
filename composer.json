@@ -51,7 +51,9 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
-        ]
+        ],
+        "deptrac-get": "curl -LS http://get.sensiolabs.de/deptrac.phar -o deptrac.phar && chmod +x deptrac.phar",
+        "deptrac-run": "php deptrac.phar"
     },
     "config": {
         "sort-packages": true
